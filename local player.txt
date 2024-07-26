@@ -1,9 +1,7 @@
--- Create a ScreenGui and add it to the player's PlayerGui
 local player = game.Players.LocalPlayer
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player.PlayerGui
 
--- Create a TextButton (grey square button)
 local button = Instance.new("TextButton")
 button.Size = UDim2.new(0, 100, 0, 100) -- Size of the button (100x100 pixels)
 button.Position = UDim2.new(1, -120, 0, 10) -- Positioned slightly left from the top-right corner
@@ -42,12 +40,11 @@ local function updateButtonVisibility()
     button.Visible = userInputService.TouchEnabled
 end
 
--- Initial check and update visibility when device type changes
 updateButtonVisibility()
 userInputService.DeviceChanged:Connect(updateButtonVisibility)
 
 -- Draggable functionality
-local dragging = false
+local dragging = true
 local dragStart = Vector2.new()
 local startPos = UDim2.new()
 
@@ -80,7 +77,6 @@ local function onInputEnded(input)
     end
 end
 
--- Connect the touch input events
 userInputService.InputBegan:Connect(onInputBegan)
 userInputService.InputChanged:Connect(onInputChanged)
 userInputService.InputEnded:Connect(onInputEnded)
